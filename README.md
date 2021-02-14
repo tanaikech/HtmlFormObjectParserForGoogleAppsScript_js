@@ -61,6 +61,14 @@ This library is used for sending the form object from HTML&Javascript side to Go
 </script>
 ```
 
+## Options
+
+In the current version, the method of `ParseFormObjectForGAS` has 3 arguments like `ParseFormObjectForGAS(formObj, fields, excludeTypes)`. [Ref](https://github.com/tanaikech/HtmlFormObjectParserForGoogleAppsScript_js/blob/master/htmlFormObjectParserForGoogleAppsScript_js.js)
+
+- `formObj` : This is the form object from HTML form.
+- `fields` : Fields value. Default is `"name,type,value,files,checked"`. In this case, the object, which has the properties of `name,type,value,files,checked`, is returned.
+- `excludeTypes` : Exclude types. Default is "submit". In this case, for example, at above HTML form, the property of button is not included in the returned object.
+
 # Sample script 1
 
 As a sample script for using this library, please do the following flow.
@@ -302,6 +310,10 @@ function getFormValues(formObject) {
   );
 }
 ```
+
+# IMPORTANT
+
+- In the current stage, the maximum size of blob for Google Apps Script is 50 MB. So when you want to upload the file with the size over 50 MB, it is required to use the resumable upload of Drive API. [Ref](https://github.com/tanaikech/AsynchronousResumableUploadForGoogleDrive)
 
 # References
 
