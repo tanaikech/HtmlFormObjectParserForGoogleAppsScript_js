@@ -218,7 +218,7 @@ In order to test this, please access to the copied URL of `https://script.google
 
 When the HTML form like above image is submitted, the following object is sent to Google Apps Script side. At above script, it's `obj` of `const obj = await ParseFormObjectForGAS(e.parentNode)`. The keys of this object are from `name` of each tag in above HTML form.
 
-```json
+```
 {
   "sampleRadiobutton": [ <--- In this property, there are 2 same name of "sampleRadiobutton". By this, this array has 2 elements.
     {
