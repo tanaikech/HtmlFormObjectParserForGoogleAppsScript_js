@@ -311,6 +311,69 @@ function getFormValues(formObject) {
 }
 ```
 
+# Sample script 3
+
+When you want to upload a file using `google.script.run`, you can use the following sample script.
+
+## HTML side: `index.html`
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/tanaikech/HtmlFormObjectParserForGoogleAppsScript_js@master/htmlFormObjectParserForGoogleAppsScript_js.min.js"></script>
+<form>
+  <input type="file" name="file" />
+  <input
+    type="button"
+    value="ok"
+    onclick="ParseFormObjectForGAS(this.parentNode).then(obj => google.script.run.upload(obj))"
+  />
+</form>
+```
+
+## Google Apps Script side: `Code.gs`
+
+```javascript
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile("index.html");
+}
+
+function upload(e) {
+  DriveApp.createFile(
+    Utilities.newBlob(
+      e.file[0].files[0].bytes,
+      e.file[0].files[0].mimeType,
+      e.file[0].files[0].filename
+    )
+  );
+}
+```
+
+- For example, when you don't use V8 runtime, you can use the following script. When the following script is used for the condition with enabling V8 runtime, the uploaded file cannot be opened. Please be careful this.
+
+  - HTML side: `index.html`
+
+    ```html
+    <form>
+      <input type="file" name="file" />
+      <input
+        type="button"
+        value="ok"
+        onclick="google.script.run.upload(this.parentNode)"
+      />
+    </form>
+    ```
+
+  - Google Apps Script side: `Code.gs`
+
+    ```javascript
+    function doGet() {
+      return HtmlService.createHtmlOutputFromFile("index.html");
+    }
+
+    function upload(e) {
+      DriveApp.createFile(e.file);
+    }
+    ```
+
 # IMPORTANT
 
 - In the current stage, the maximum size of blob for Google Apps Script is 50 MB. So when you want to upload the file with the size over 50 MB, it is required to use the resumable upload of Drive API. [Ref](https://github.com/tanaikech/AsynchronousResumableUploadForGoogleDrive)
