@@ -63,11 +63,12 @@ This library is used for sending the form object from HTML&Javascript side to Go
 
 ## Options
 
-In the current version, the method of `ParseFormObjectForGAS` has 3 arguments like `ParseFormObjectForGAS(formObj, fields, excludeTypes)`. [Ref](https://github.com/tanaikech/HtmlFormObjectParserForGoogleAppsScript_js/blob/master/htmlFormObjectParserForGoogleAppsScript_js.js)
+In the current version, the method of `ParseFormObjectForGAS` has 4 arguments like `ParseFormObjectForGAS(formObj, fields, excludeTypes, includeOrder)`. [Ref](https://github.com/tanaikech/HtmlFormObjectParserForGoogleAppsScript_js/blob/master/htmlFormObjectParserForGoogleAppsScript_js.js)
 
 - `formObj` : This is the form object from HTML form.
-- `fields` : Fields value. Default is `"name,type,value,files,checked"`. In this case, the object, which has the properties of `name,type,value,files,checked`, is returned.
-- `excludeTypes` : Exclude types. Default is "submit". In this case, for example, at above HTML form, the property of button is not included in the returned object.
+- `fields` : Fields value. Default is `"name,type,value,files,checked"`. In this case, the object, which has the properties of `name,type,value,files,checked`, is returned. If you don't want to use this, you can use as `null`.
+- `excludeTypes` : Exclude types. Default is "submit". In this case, for example, at above HTML form, the property of button is not included in the returned object. If you don't want to use this, you can use as `null`.
+- `includeOrder`: Include order of each input tag in form. Default is `false`. When this value is `true`, a property of `orderOfFormObject` is included in the returned object. This value is the order of HTML form object.
 
 # Sample script 1
 
@@ -405,5 +406,9 @@ If you have any questions and commissions for me, feel free to tell me.
 - v1.0.0 (February 13, 2021)
 
   1. Initial release.
+
+- v1.0.1 (January 11, 2022)
+
+  1. A new argument of `includeOrder` was added as the 4th argument. This library returns the parsed form object as a JSON object. By this, the order of HTML form object is not saved. From this version, this order can be included. This argument includes the order of each input tag in form. The default value is `false`. When this value is `true`, a property of `orderOfFormObject` is included in the returned object. This value is the order of HTML form object. Using this value, you can retrieve the parsed form object in order of HTML form.
 
 [TOP](#top)
