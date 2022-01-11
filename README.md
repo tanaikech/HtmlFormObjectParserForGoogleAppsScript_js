@@ -28,7 +28,7 @@ This Javascript library was created by updating the sample script at [this repor
 Or, using jsdelivr cdn
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/tanaikech/HtmlFormObjectParserForGoogleAppsScript_js@master/htmlFormObjectParserForGoogleAppsScript_js.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/tanaikech/HtmlFormObjectParserForGoogleAppsScript_js/htmlFormObjectParserForGoogleAppsScript_js.min.js"></script>
 ```
 
 # Usage
